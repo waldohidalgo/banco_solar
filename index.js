@@ -23,19 +23,19 @@ app.listen(PORT, () => {
   console.log(`El servidor está inicializado en el puerto ${PORT}`);
 });
 
-// setInterval(async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/reset", {
-//       method: "GET",
-//     });
+setInterval(async () => {
+  try {
+    const response = await fetch("https://banco-solar.onrender.com/reset", {
+      method: "GET",
+    });
 
-//     if (response.status === 200) {
-//       console.log("Se reinicio el servidor exitosamente");
-//       return;
-//     } else {
-//       throw new Error("No se pudo reiniciar el servidor");
-//     }
-//   } catch (error) {
-//     console.error("Error al llamar a la ruta:", error);
-//   }
-// }, 1800000);
+    if (response.status === 200) {
+      console.log("Se reinicio el servidor exitosamente");
+      return;
+    } else {
+      throw new Error("No se pudo reiniciar el servidor");
+    }
+  } catch (error) {
+    console.error("Error al llamar a la ruta:", error);
+  }
+}, 1800000);

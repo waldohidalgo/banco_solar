@@ -44,6 +44,7 @@ He ido muchísimo más allá de los requerimientos del proyecto con la intenció
     - [3.Servir una API RESTful en el servidor con los datos de los usuarios almacenados en PostgreSQL. (3 Puntos)](#3servir-una-api-restful-en-el-servidor-con-los-datos-de-los-usuarios-almacenados-en-postgresql-3-puntos)
     - [4.Capturar los posibles errores que puedan ocurrir a través de bloques catch o parámetros de funciones callbacks para condicionar las funciones del servidor. (1 Punto)](#4capturar-los-posibles-errores-que-puedan-ocurrir-a-través-de-bloques-catch-o-parámetros-de-funciones-callbacks-para-condicionar-las-funciones-del-servidor-1-punto)
     - [5.Devolver correctamente los códigos de estado según las diferentes situaciones. (1 Punto)](#5devolver-correctamente-los-códigos-de-estado-según-las-diferentes-situaciones-1-punto)
+  - [¡Extra!](#extra)
 
 ## Requisitos
 
@@ -575,5 +576,73 @@ if (response.data.code === "23503") {
     icon: "warning",
   });
   return;
+}
+```
+
+## ¡Extra!
+
+A los 30 minutos (1800000 milisegundos) se ejecuta el siguiente script que resetea la data en la base de datos eliminando **TODO** lo que se haya escrito. Además, se disponibiliza la ruta **reset** para resetear todo cada vez que se ingrese a dicha ruta:
+
+```js
+setInterval(async () => {
+  try {
+    const response = await fetch("https://banco-solar.onrender.com/reset", {
+      method: "GET",
+    });
+
+    if (response.status === 200) {
+      console.log("Se reinicio el servidor exitosamente");
+      return;
+    } else {
+      throw new Error("No se pudo reiniciar el servidor");
+    }
+  } catch (error) {
+    console.error("Error al llamar a la ruta:", error);
+  }
+}, 1800000);
+```
+
+La cual ejecuta la ruta que realiza la siguiente transacción en la base de datos:
+
+```js
+export async function resetDataQuery() {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    await client.query("delete from bancosolar_transferencias");
+
+    await client.query(
+      "ALTER SEQUENCE bancosolar_transferencias_id_seq RESTART WITH 1",
+    );
+
+    await client.query("delete from bancosolar_usuarios");
+
+    await client.query(
+      "ALTER SEQUENCE bancosolar_usuarios_id_seq RESTART WITH 1",
+    );
+
+    await client.query(`insert into 
+    bancosolar_usuarios(nombre,balance)
+    values ('Waldo Hidalgo',1000000),
+    ('John Doe',1200000),
+    ('Juan Bravo',800000),
+    ('Karina Perez',500000)`);
+
+    await client.query(`insert into 
+    bancosolar_transferencias 
+    (emisor,receptor,monto,fecha)
+    values
+    (1,2,400000,'2024-04-14 19:31:53.000'),
+    (2,3,50000,'2022-04-14 19:32:29.000')`);
+
+    await client.query("COMMIT");
+  } catch (e) {
+    console.log(e.message);
+    await client.query("ROLLBACK");
+    throw e;
+  } finally {
+    client.release();
+  }
 }
 ```
