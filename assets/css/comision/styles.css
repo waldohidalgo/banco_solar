@@ -1,0 +1,28 @@
+.section_comision_titulo {
+  font-family: "Merriweather", serif;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+#section_comision {
+  background-color: #eee;
+  text-align: center;
+}
+
+#monto_comision {
+  font-weight: 700;
+}
+
+.monto_ganancias {
+  font-size: 1.5rem;
+}
+
+.monto_ganancias {
+  font-family: "Times New Roman", Times, serif;
+}
+
+#nombre_banco {
+  font-family: "cloister", sans-serif;
+  text-decoration: underline;
+}/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,83 @@
+$font-titulo-main: "cloister", sans-serif;
+$font-subtitulos: "Merriweather", serif;
+
+.main_title {
+  font-family: $font-titulo-main;
+  width: fit-content;
+  margin-inline: auto;
+
+  span {
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 2rem;
+  }
+
+  @media screen and (min-width: 480px) {
+    span {
+      font-size: 3rem;
+    }
+  }
+}
+
+.separador {
+  background-color: orange;
+  border: 1px solid black;
+  height: 8px;
+  width: 100%;
+}
+
+.contenedor_logo {
+  width: 80%;
+  max-width: 100px;
+
+  img {
+    width: 100%;
+    filter: drop-shadow(5px 0px 0px black) drop-shadow(0px 5px 0px black)
+      drop-shadow(-5px 0px 0px black) drop-shadow(0px 0px 0px black);
+  }
+}
+
+form {
+  @media screen and (min-width: 480px) and (max-width: 768px) {
+    margin-inline: auto;
+    width: 60%;
+  }
+}
+#form_crear_transferencia .input-group {
+  max-width: 450px;
+  margin-inline: auto;
+}
+
+.tabla_transferencias {
+  width: max-content !important;
+  @media screen and (min-width: 443px) {
+    width: 100% !important;
+  }
+}
+
+h5 {
+  font-family: $font-subtitulos;
+}
+
+.tabla_usuarios_contenedor_botones {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  width: max-content;
+}
+.tabla_usuarios_nombre,
+.tabla_usuarios_balance {
+  overflow: auto;
+  max-width: 10rem;
+}
+
+.eliminar_transferencia {
+  border-radius: 50%;
+  cursor: pointer !important;
+  color: red !important;
+}
+
+.datos_transferencia_fecha {
+  white-space: nowrap;
+}

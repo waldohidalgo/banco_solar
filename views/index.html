@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/bootstrap_icons/bootstrap-icons.min.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/assets/css/globals.css" />
+    <link rel="stylesheet" href="/assets/css/spinner/index.css" />
+    <link rel="stylesheet" href="/assets/css/home/style.css" />
+    <link rel="stylesheet" href="/assets/css/comision/styles.css" />
+    <link rel="stylesheet" href="/assets/css/footer/styles.css" />
+    <title>Banco Solar</title>
+  </head>
+  <body>
+    <header class="py-5">
+      <div class="contenedor_logo mx-auto">
+        <img src="/assets/images/bank.png" alt="bank logo" />
+      </div>
+      <div>
+        <h2 class="text-center pb-0 mb-0 main_title mt-3">
+          <span>Banco Solar S.A.</span>
+          <div class="separador mt-3"></div>
+        </h2>
+      </div>
+    </header>
+    <main>
+      <div class="row mx-auto my-5">
+        <div class="col-12 col-md-5">
+          <form class="bg-dark text-white" id="form_add_usuario">
+            <div class="form-group text-center">
+              <h5>🙍‍♂️Agregar Nuevo Usuario</h5>
+              <hr class="bg-white w-50" />
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-primary text-white"
+                  for="nombre"
+                  >Nombre:</label
+                >
+                <input
+                  class="form-control d-inline"
+                  name="nombre"
+                  id="nombre"
+                  placeholder="Ingresa tu nombre"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-primary text-white"
+                  for="balance"
+                >
+                  Balance:</label
+                >
+                <input
+                  type="number"
+                  placeholder="Agregar un saldo de balance"
+                  min="0"
+                  class="form-control d-inline"
+                  name="balance"
+                  id="balance"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn btn-success mt-3">
+                <i class="bi bi-plus-circle-fill"></i> Agregar
+              </button>
+            </div>
+          </form>
+          <br />
+        </div>
+
+        <div class="col-12 col-md-7">
+          <form class="bg-dark text-white" id="form_crear_transferencia">
+            <div class="form-group text-center">
+              <h5>💵 Realizar una Transferencia</h5>
+              <hr class="bg-white w-50" />
+
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-primary text-white"
+                  for="emisor"
+                >
+                  Emisor:</label
+                >
+                <select id="emisor" name="emisor" class="form-control" required>
+                  <option value="">Selecciona un emisor</option>
+                </select>
+              </div>
+
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-primary text-white"
+                  for="receptor"
+                >
+                  Receptor:</label
+                >
+                <select
+                  id="receptor"
+                  name="receptor"
+                  class="form-control"
+                  required
+                >
+                  <option value="">Selecciona un receptor</option>
+                </select>
+              </div>
+
+              <div class="mr-3 mt-3">
+                Monto 👉:
+                <input
+                  type="number"
+                  name="monto"
+                  class="form-control mx-2 w-auto d-inline-block"
+                  id="monto"
+                  min="0"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-success mt-3">
+                <i class="bi bi-check-circle-fill"></i> Realizar
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-12 row mt-3 mx-0 px-0">
+          <div class="col-12 col-md-5 text-center">
+            <h5>Tabla de usuarios</h5>
+
+            <div class="table-responsive">
+              <table class="table bg-light">
+                <thead class="bg-primary text-white">
+                  <th>Nombre</th>
+                  <th>Balance</th>
+                  <th>Acciones</th>
+                </thead>
+                <tbody class="usuarios">
+                  <tr>
+                    <td colspan="3"><div class="loader"></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-7 text-center">
+            <h5>Tabla de Transferencias</h5>
+            <div class="table-responsive">
+              <table class="table bg-light tabla_transferencias">
+                <thead class="bg-primary text-white">
+                  <th>Eliminar</th>
+                  <th>Fecha</th>
+                  <th>Emisor</th>
+                  <th>Receptor</th>
+                  <th>Monto</th>
+                </thead>
+                <tbody class="transferencias">
+                  <tr>
+                    <td colspan="5"><div class="loader"></div></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="section_comision" class="py-5">
+        <h2 class="text-center section_comision_titulo">
+          Ganacias por Comisión
+          <div class="separador mt-1"></div>
+        </h2>
+        <p>
+          Cobrando por comisión la cifra de <span id="monto_comision"></span>
+          por transferencia sobre $1.000 se obtiene como ganancia la cifra de:
+        </p>
+        <div class="container">
+          <div class="table-responsive">
+            <table class="table bg-light">
+              <thead class="bg-primary text-white">
+                <th>Nombre</th>
+                <th>Subtotal Transferencias</th>
+                <th>Subtotal Comisiones</th>
+              </thead>
+              <tbody class="comisiones">
+                <tr>
+                  <td colspan="3"><div class="loader"></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="monto_ganancias">
+          En resumen, el <span id="nombre_banco">Banco Solar SA</span> ha ganado
+          el monto de: <span id="ganancias_total"></span>
+        </p>
+      </section>
+    </main>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog text-dark" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              ✏️ Editar Usuario
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="formulario_editar_usuario">
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-dark text-white"
+                  for="nombreEdit"
+                  >Nombre</label
+                >
+                <input
+                  id="nombreEdit"
+                  type="text"
+                  class="form-control"
+                  name="nombre"
+                  required
+                />
+              </div>
+              <div class="input-group mb-3">
+                <label
+                  class="input-group-text bg-dark text-white"
+                  for="balanceEdit"
+                  >Balance</label
+                >
+                <input
+                  id="balanceEdit"
+                  type="number"
+                  class="form-control"
+                  min="0"
+                  name="balance"
+                  required
+                />
+              </div>
+
+              <button
+                class="btn btn-success mt-3 mx-auto d-block"
+                type="submit"
+              >
+                <i class="bi bi-pencil-fill"></i> Editar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer" translate="no">
+      <div class="footer_contenido">
+        <div translate="no" id="footer_tag">Developed by:</div>
+
+        <div class="logo">
+          <a
+            href="https://linktr.ee/waldohidalgo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/assets/images/logo_waldo.png" alt="logo waldo" />
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/assets/js/index.js"></script>
+  </body>
+</html>

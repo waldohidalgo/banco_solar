@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "cloister";
+  src: url("./CloisterBlack.ttf") format("truetype");
+}
+
+main {
+  background: rgb(255, 250, 223);
+}
+header {
+  background-color: #eee;
+}
+form {
+  padding: 15px;
+
+  border-radius: 10px;
+}

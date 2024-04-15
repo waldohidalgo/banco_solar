@@ -1,0 +1,27 @@
+$font-titulo-main: "cloister", sans-serif;
+$font-subtitulos: "Merriweather", serif;
+
+.section_comision_titulo {
+  font-family: $font-subtitulos;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+#section_comision {
+  background-color: #eee;
+  text-align: center;
+}
+#monto_comision {
+  font-weight: 700;
+}
+
+.monto_ganancias {
+  font-size: 1.5rem;
+}
+.monto_ganancias {
+  font-family: "Times New Roman", Times, serif;
+}
+#nombre_banco {
+  font-family: $font-titulo-main;
+  text-decoration: underline;
+}
