@@ -10,6 +10,7 @@ import {
   deleteTransferencia,
   getComisiones,
   resetData,
+  notFound,
 } from "../controllers/index.js";
 
 const router = express.Router();
@@ -39,5 +40,9 @@ router.get("/comisiones", getComisiones);
 //Resetear Data
 
 router.get("/reset", resetData);
+
+//No found
+
+router.get("/*", notFound);
 
 export default router;

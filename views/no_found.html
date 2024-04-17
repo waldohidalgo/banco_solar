@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/assets/css/globals.css" />
+    <link rel="stylesheet" href="/assets/css/home/style.css" />
+    <link rel="stylesheet" href="/assets/css/no_found/styles.css" />
+    <link rel="stylesheet" href="/assets/css/footer/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Banco Solar</title>
+  </head>
+  <body>
+    <header class="py-5">
+      <div class="contenedor_logo mx-auto">
+        <img src="/assets/images/bank.png" alt="bank logo" />
+      </div>
+      <div>
+        <h2 class="text-center pb-0 mb-0 main_title mt-3">
+          <span>Banco Solar S.A.</span>
+          <div class="separador mt-3"></div>
+        </h2>
+      </div>
+    </header>
+    <main class="no_found_section">
+      <div class="no_found_contenedor_imagen">
+        <h1 class="no_found_title">404</h1>
+      </div>
+      <div class="no_found_contenedor_detalle">
+        <p class="no_found_subtitulo">Parece que estas perdido 🤔</p>
+        <p class="no_found_description">
+          ¡ La página que estas buscando no esta disponible !
+        </p>
+        <div class="no_found_link_404">
+          <a href="/" title="Ir a la página de Inicio">
+            Ir a la Página de Inicio
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="footer" translate="no">
+      <div class="footer_contenido">
+        <div translate="no" id="footer_tag">Developed by:</div>
+
+        <div class="logo">
+          <a
+            href="https://linktr.ee/waldohidalgo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src="/assets/images/logo_waldo.png" alt="logo waldo" />
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const textoObjetivo = $("#footer_tag")[0];
+
+      var typewriter = new Typewriter(textoObjetivo, {
+        strings: "Developed By:",
+        autoStart: true,
+        loop: true,
+        delay: 75,
+      });
+    </script>
+  </body>
+</html>

@@ -104,3 +104,7 @@ export async function resetData(req, res) {
     res.status(500).send(error.message);
   }
 }
+
+export async function notFound(req, res) {
+  res.status(404).sendFile("views/no_found.html", { root: "." });
+}

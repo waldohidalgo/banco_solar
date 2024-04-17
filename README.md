@@ -39,6 +39,7 @@ He ido muchísimo más allá de los requerimientos del proyecto con la intenció
       - [4.5. Alerta eliminación usuario exitosa](#45-alerta-eliminación-usuario-exitosa)
       - [4.6. Eliminación de usuario exitosa en el front end](#46-eliminación-de-usuario-exitosa-en-el-front-end)
       - [4.7. Eliminación de usuario exitosa en el back end](#47-eliminación-de-usuario-exitosa-en-el-back-end)
+    - [5. Página Error 404](#5-página-error-404)
   - [Soluciones](#soluciones)
     - [1.Utilizar el paquete pg para conectarse a PostgreSQL y realizar consultas DML para la gestión y persistencia de datos. (3 Puntos)](#1utilizar-el-paquete-pg-para-conectarse-a-postgresql-y-realizar-consultas-dml-para-la-gestión-y-persistencia-de-datos-3-puntos)
     - [2.Usar transacciones SQL para realizar el registro de las transferencias. (2 Puntos)](#2usar-transacciones-sql-para-realizar-el-registro-de-las-transferencias-2-puntos)
@@ -184,6 +185,10 @@ Una vez eliminadas todas las transferencias asociadas al usuario **Daniela Perez
 #### 4.7. Eliminación de usuario exitosa en el back end
 
 ![Eliminación de usuario exitosa en el back end](./screenshots/20eliminacion_usuario_exitosa_back_end.jpg)
+
+### 5. Página Error 404
+
+![Página Error 404](./screenshots/error_404.webp)
 
 ## Soluciones
 
