@@ -180,6 +180,7 @@ export async function resetDataQuery() {
     (2,3,50000,'2022-04-14 19:32:29.000')`);
 
     await client.query("COMMIT");
+    return "exito";
   } catch (e) {
     console.log(e.message);
     await client.query("ROLLBACK");

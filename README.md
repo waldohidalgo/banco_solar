@@ -46,7 +46,7 @@ He ido muchísimo más allá de los requerimientos del proyecto con la intenció
     - [3.Servir una API RESTful en el servidor con los datos de los usuarios almacenados en PostgreSQL. (3 Puntos)](#3servir-una-api-restful-en-el-servidor-con-los-datos-de-los-usuarios-almacenados-en-postgresql-3-puntos)
     - [4.Capturar los posibles errores que puedan ocurrir a través de bloques catch o parámetros de funciones callbacks para condicionar las funciones del servidor. (1 Punto)](#4capturar-los-posibles-errores-que-puedan-ocurrir-a-través-de-bloques-catch-o-parámetros-de-funciones-callbacks-para-condicionar-las-funciones-del-servidor-1-punto)
     - [5.Devolver correctamente los códigos de estado según las diferentes situaciones. (1 Punto)](#5devolver-correctamente-los-códigos-de-estado-según-las-diferentes-situaciones-1-punto)
-  - [¡Extra!](#extra)
+  - [¡Extra!: Reseteo de data mediante ruta y mediante intervalo de 30 minutos](#extra-reseteo-de-data-mediante-ruta-y-mediante-intervalo-de-30-minutos)
 
 ## Requisitos
 
@@ -589,30 +589,28 @@ if (response.data.code === "23503") {
 }
 ```
 
-## ¡Extra!
+## ¡Extra!: Reseteo de data mediante ruta y mediante intervalo de 30 minutos
 
-A los 30 minutos (1800000 milisegundos) se ejecuta el siguiente script que resetea la data en la base de datos eliminando **TODO** lo que se haya escrito. Además, se disponibiliza la ruta **reset** para resetear todo cada vez que se ingrese a dicha ruta:
+Disponibilizo la ruta reset que permite eliminar toda la data de las tablas utilizadas en la base de datos y crear una data por defecto:
 
 ```js
-setInterval(async () => {
-  try {
-    const response = await fetch("https://banco-solar.onrender.com/reset", {
-      method: "GET",
-    });
-
-    if (response.status === 200) {
-      console.log("Se reinicio el servidor exitosamente");
-      return;
-    } else {
-      throw new Error("No se pudo reiniciar el servidor");
-    }
-  } catch (error) {
-    console.error("Error al llamar a la ruta:", error);
-  }
-}, 1800000);
+router.get("/reset", resetData);
 ```
 
-La cual ejecuta la ruta que realiza la siguiente transacción en la base de datos:
+La cual hace uso de la función **resetData**:
+
+```js
+export async function resetData(req, res) {
+  try {
+    await resetDataQuery();
+    res.status(200).send("Data Reseteada");
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+```
+
+La cual hace uso del siguiente script SQL:
 
 ```js
 export async function resetDataQuery() {
@@ -647,6 +645,7 @@ export async function resetDataQuery() {
     (2,3,50000,'2022-04-14 19:32:29.000')`);
 
     await client.query("COMMIT");
+    return "exito";
   } catch (e) {
     console.log(e.message);
     await client.query("ROLLBACK");
@@ -655,4 +654,23 @@ export async function resetDataQuery() {
     client.release();
   }
 }
+```
+
+También he creado el siguiente intervalo el cual permite el reseteo de data y creación de data por defecto cada 30 minutos:
+
+```js
+setInterval(async () => {
+  try {
+    const response = await resetDataQuery();
+
+    if (response === "exito") {
+      console.log("Se reinicio el servidor exitosamente");
+      return;
+    } else {
+      throw new Error("No se pudo reiniciar el servidor");
+    }
+  } catch (error) {
+    console.error("Error al llamar a la ruta:", error);
+  }
+}, 1800000);
 ```

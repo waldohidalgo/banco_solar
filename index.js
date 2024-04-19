@@ -3,6 +3,7 @@ import router from "./routes/routes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { resetDataQuery } from "./queries/consultas.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -25,11 +26,9 @@ app.listen(PORT, () => {
 
 setInterval(async () => {
   try {
-    const response = await fetch("https://banco-solar.onrender.com/reset", {
-      method: "GET",
-    });
+    const response = await resetDataQuery();
 
-    if (response.status === 200) {
+    if (response === "exito") {
       console.log("Se reinicio el servidor exitosamente");
       return;
     } else {
